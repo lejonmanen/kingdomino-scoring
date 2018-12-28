@@ -1,32 +1,73 @@
-.App {
-  text-align: center;
+/*$meeple-green: #187E13
+$meeple-pink:   #FA8AC0
+$meeple-blue:   #649BFA
+$meeple-yellow: #EEF138
+*/
+body {
+	font-size: 1.0em;
+}
+.app > div:nth-child(1) {border-color: #187E13}
+.app > div:nth-child(2) {border-color: #FA8AC0}
+.app > div:nth-child(3) {border-color: #649BFA}
+.app > div:nth-child(4) {border-color: #EEF138}
+
+.areas {
+	display: grid;
+	grid-template-columns: 1fr 3em 3em 1fr;
+	text-align: center;
+}
+.areas input {
+	font-family: consolas, courier new, monospace;
+	font-size: 0.9em;
+	padding-top: 3px;
+	font-weight: regular;
+}
+.areas select {
+	padding: 4px 2px;
+}
+.score {
+	font-family: consolas, courier new, monospace;
+	font-size: 0.9em;
+	padding-top: 2px;
+	font-weight: bold;
+}
+.areas input {
+	display: inline-block;
+	min-width: 1em;
+	width: 1.5em;
+	text-align: center;
+	padding: 2px 8px;
+	font-size: 0.9em;
+}
+.app h1 {
+	font-size: 1.4em;
+}
+.btn-light {
+	color: #212529;
+	background-color: #f8f9fa;
+	border-color: #f8f9fa;
+	user-select: none;
+	border: 1px solid transparent;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: .25rem;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.app {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+body {
+	background-color: #AFDEF3;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app > div {
+	border-width: 4px;
+	border-style: solid;
+	background-color: #C6EBFB;
+	font-size: 1.2em;
+	padding: 1em;
+	margin: 0.5em;
+	border-radius: 0.4em;
 }
