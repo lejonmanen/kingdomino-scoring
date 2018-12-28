@@ -10,14 +10,9 @@ class App extends Component {
 				name: 'Player 1',
 				areas: [
 					{
-						terrain: 'Meadow',
+						terrain: 'Field',
 						crowns: 0,
-						tiles: 3
-					},
-					{
-						terrain: 'Forest',
-						crowns: 2,
-						tiles: 2
+						tiles: 0
 					}
 				],
 				castleCentered: false,
@@ -27,9 +22,9 @@ class App extends Component {
 				name: 'Player 2',
 				areas: [
 					{
-						terrain: 'Meadow',
-						crowns: 1,
-						tiles: 1
+						terrain: 'Field',
+						crowns: 0,
+						tiles: 0
 					}
 				],
 				castleCentered: false,
