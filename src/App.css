@@ -3,14 +3,44 @@ $meeple-pink:   #FA8AC0
 $meeple-blue:   #649BFA
 $meeple-yellow: #EEF138
 */
-body {
-	font-size: 1.0em;
+
+/* Player divs */
+.app > div {
+	border-width: 4px;
+	border-style: solid;
+	background-color: #C6EBFB;
+	font-size: 1.2em;
+	padding: 1em;
+	margin: 0.5em;
+	border-radius: 0.4em;
 }
 .app > div:nth-child(1) {border-color: #187E13}
 .app > div:nth-child(2) {border-color: #FA8AC0}
 .app > div:nth-child(3) {border-color: #649BFA}
 .app > div:nth-child(4) {border-color: #EEF138}
 
+/* Double clicking labels should not select the text */
+.app label {
+	user-select: none;
+}
+
+
+/* Editable heading */
+.app h1, .app .h1 {
+	font-size: 1.4em;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-family: "Segoe UI";
+	font-weight: bold;
+	/* min-width: 10em; */
+}
+.app h1 { margin-top: 12px; margin-bottom: 12px; }
+.app h1:hover {
+	text-decoration: underline;
+}
+
+
+/* Areas : terrain, number of crowns and tiles */
 .areas {
 	display: grid;
 	grid-template-columns: 1fr 3em 3em 1fr;
@@ -39,9 +69,8 @@ body {
 	padding: 2px 8px;
 	font-size: 0.9em;
 }
-.app h1 {
-	font-size: 1.4em;
-}
+
+
 .btn-light {
 	color: #212529;
 	background-color: #f8f9fa;
@@ -54,6 +83,8 @@ body {
 	border-radius: .25rem;
 	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+/* General app stuff */
 .app {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -61,13 +92,6 @@ body {
 
 body {
 	background-color: #AFDEF3;
+	font-size: 1.0em;
 }
-.app > div {
-	border-width: 4px;
-	border-style: solid;
-	background-color: #C6EBFB;
-	font-size: 1.2em;
-	padding: 1em;
-	margin: 0.5em;
-	border-radius: 0.4em;
-}
+.hide { display: none; }

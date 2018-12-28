@@ -1,79 +1,73 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import Emoji from './Emoji.js'
+import Editable from './Editable.js'
+import Area from './Area.js'
 
 class Player extends Component {
 	constructor(props) {
 		super(props)
 		let {name, areas, castleCentered, allTilesPlaced} = props.data
+		let score = areas.reduce( (acc, cur) => acc + cur.crowns*cur.tiles, 0 )
 		this.state = {
-			name, areas, castleCentered, allTilesPlaced
+			name, areas, castleCentered, allTilesPlaced,
+			finalScore: score
 		}
 	}
+	// componentDidUpdate(prevProps, prevState) {
+	// 	if( this.nameRef.current !== null ) this.nameRef.current.focus()
+	// }
+	updateScore = scoreDiff => this.setState({finalScore: this.state.finalScore + scoreDiff})
+
 	render() {
+		// const pName = <Fragment> {editName} {displayName} </Fragment>
+		const pName = <Editable
+			value={this.state.name}
+			change={value => this.setState({name: value})} />
+
 		return (
 			<div>
-				<h1>{this.state.name}</h1>
-				----<input type="text" value="Player 1"/>
+				{pName}
+
 				<div className="areas">
-				<div>Terrain</div>
-				<div><Emoji symbol="👑" label="crown"/></div>
-				<div><Emoji symbol="⬜" label="empty checkbox" /></div>
-				<div>Score</div>
+					<div>Terrain</div>
+					<div><Emoji symbol="👑" label="crown"/></div>
+					<div><Emoji symbol="⬜" label="empty checkbox" /></div>
+					<div>Score</div>
 
-				{this.state.areas.map(area => (
-					<Area area={area} key={area.terrain+area.crowns+area.tiles}/>
-				))}
-
-				{/*<div>
-					<select>
-						<option selected>Meadow</option>
-						<option>Forest</option>
-					</select>
+				{this.state.areas.map((area, i) => (
+						<Area area={area}
+							key={area.terrain+area.crowns+area.tiles+i}
+						 	update={this.updateScore} />
+					))}
+					<button onClick={e => this.setState({areas: [...this.state.areas, {terrain: 'Field', crowns: 0, tiles: 0} ]})}>Add area</button>
 				</div>
-				<div><input type="text" value="0" /></div>
-				<div><input type="text" value="3" /></div>
-				<div className="score">0</div>
 
 				<div>
-				<select>
-				<option>Meadow</option>
-				<option selected>Forest</option>
-				</select>
+					<label> <input type="checkbox"
+							onChange={e => this.updateCastleScore(e.target.checked)} />
+						Castle centered +5p </label>
 				</div>
-				<div><input type="text" value="2" /></div>
-				<div><input type="text" value="2" /></div>
-				<div className="score">4</div>*/}
+
+				<div>
+					<label> <input type="checkbox"
+						onChange={e => this.updateTilesScore(e.target.checked)} />
+					All tiles placed +10p </label>
 				</div>
-				<div><label>🗹 Castle centered</label></div>
-				<div><label>☐ All tiles placed</label></div>
-				Final score: 9
+
+				<div>Final score: {this.state.finalScore}</div>
 			</div>
 		)
 	}
-}
-const TERRAINS = ['Field', 'Forest', 'Sea', 'Meadow', 'Swamp', 'Mine']
-class Area extends Component {
-	constructor(props) {
-		super(props)
-		let {terrain, crowns, tiles} = props.area
-		this.state = {
-			terrain: terrain,
-			crowns: crowns,
-			tiles: tiles
-		}
+	//🗹☐
+	updateCastleScore = on => {
+		let newScore = this.state.finalScore + (on ? 1 : -1) * 5
+		this.setState({castleCentered: on, finalScore: newScore})
 	}
-	render = () => (
-		<Fragment>
-			<div>
-				<select value={this.state.terrain}>
-					{TERRAINS.map(t => (<option key={t}>{t}</option>))}
-				</select>
-			</div>
-			<div><input type="text" value={this.state.crowns} /></div>
-			<div><input type="text" value={this.state.tiles} /></div>
-			<div className="score">{this.state.crowns * this.state.tiles}</div>
-		</Fragment>
-	)
+	updateTilesScore = on => {
+		let newScore = this.state.finalScore + (on ? 1 : -1) * 10
+		this.setState({allTilesPlaced: on, finalScore: newScore})
+	}
 }
+
 
 export default Player
