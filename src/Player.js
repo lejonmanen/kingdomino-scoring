@@ -45,26 +45,28 @@ class Player extends Component {
 				<div>
 					<label> <input type="checkbox"
 							onChange={e => this.updateCastleScore(e.target.checked)} />
-						Castle centered +5p </label>
+						Castle centered +{this.castleBonus}p </label>
 				</div>
 
 				<div>
 					<label> <input type="checkbox"
 						onChange={e => this.updateTilesScore(e.target.checked)} />
-					All tiles placed +10p </label>
+					All tiles placed +{this.tilesBonus}p </label>
 				</div>
 
 				<div>Final score: {this.state.finalScore}</div>
 			</div>
 		)
 	}
+	castleBonus = 10
+	tilesBonus = 5
 	//🗹☐
 	updateCastleScore = on => {
-		let newScore = this.state.finalScore + (on ? 1 : -1) * 5
+		let newScore = this.state.finalScore + (on ? 1 : -1) * this.castleBonus
 		this.setState({castleCentered: on, finalScore: newScore})
 	}
 	updateTilesScore = on => {
-		let newScore = this.state.finalScore + (on ? 1 : -1) * 10
+		let newScore = this.state.finalScore + (on ? 1 : -1) * this.tilesBonus
 		this.setState({allTilesPlaced: on, finalScore: newScore})
 	}
 }
