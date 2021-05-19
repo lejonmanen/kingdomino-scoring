@@ -21,11 +21,11 @@ class Area extends Component {
 					</select>
 				</div>
 
-				<div><input type="text" value={this.state.crowns}
+				<div><input type="number" value={this.state.crowns} min="0"
 				 	onChange={e => this.setState( {crowns: e.target.value},
 						this.props.update((e.target.value - this.state.crowns) * this.state.tiles) )}/></div>
 
-				<div><input type="text" value={this.state.tiles}
+				<div><input type="number" value={this.state.tiles} min="0"
 				 	onChange={e => this.setState({tiles: e.target.value},
 						this.props.update((e.target.value - this.state.tiles) * this.state.crowns) )} /></div>
 

@@ -8,25 +8,17 @@ class App extends Component {
 		players: [
 			{
 				name: 'Player 1',
-				areas: [
-					{
-						terrain: 'Field',
-						crowns: 0,
-						tiles: 0
-					}
-				],
+				areas: ['Field', 'Forest', 'Sea', 'Meadow', 'Swamp', 'Mine'].map(t => ({
+					terrain: t, crowns: 0, tiles: 0
+				})) ,
 				castleCentered: false,
 				allTilesPlaced: false
 			},
 			{
 				name: 'Player 2',
-				areas: [
-					{
-						terrain: 'Field',
-						crowns: 0,
-						tiles: 0
-					}
-				],
+				areas: ['Field', 'Forest', 'Sea', 'Meadow', 'Swamp', 'Mine'].map(t => ({
+					terrain: t, crowns: 0, tiles: 0
+				})) ,
 				castleCentered: false,
 				allTilesPlaced: false
 			}
@@ -34,7 +26,7 @@ class App extends Component {
 	}
 	makeNewPlayer = () => ({
 		name: 'Player ' + (this.state.players.length + 1),
-		areas: [],
+		areas: [{ terrain: 'Field', crowns: 0, tiles: 0 }],
 		castleCentered: false,
 		allTilesPlaced: false
 	})
@@ -45,9 +37,12 @@ class App extends Component {
 
 		return (
 			<div className="app">
-				{this.state.players.map(p => (<Player data={p} key={p.name} />))}
-
-				{maybeButton}
+				<div className="grid">
+					{this.state.players.map(p => (<Player data={p} key={p.name} />))}
+				</div>
+				<div>
+					{maybeButton}
+				</div>
 			</div>
 		);
 	}

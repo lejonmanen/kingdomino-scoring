@@ -54,7 +54,7 @@ class Player extends Component {
 					All tiles placed +{this.tilesBonus}p </label>
 				</div>
 
-				<div>Final score: {this.state.finalScore}</div>
+				<div>Final score: <span className="final-score">{this.state.finalScore}</span> </div>
 			</div>
 		)
 	}

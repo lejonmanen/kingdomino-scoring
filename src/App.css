@@ -4,20 +4,40 @@ $meeple-blue:   #649BFA
 $meeple-yellow: #EEF138
 */
 
+/* General app stuff */
+.app {
+	display: flex;
+	flex-direction: column;
+}
+.app > :last-child {
+	flex: 0 0 auto;
+}
+.app .grid {
+	/* display: grid; */
+	/* grid-template-columns: repeat(4, 1fr); */
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
 /* Player divs */
-.app > div {
+.app .grid > div {
 	border-width: 4px;
 	border-style: solid;
 	background-color: #C6EBFB;
 	font-size: 1.2em;
-	padding: 1em;
+	padding: 0.4em 1em 0.6em 1em;
 	margin: 0.5em;
 	border-radius: 0.4em;
 }
-.app > div:nth-child(1) {border-color: #187E13}
-.app > div:nth-child(2) {border-color: #FA8AC0}
-.app > div:nth-child(3) {border-color: #649BFA}
-.app > div:nth-child(4) {border-color: #EEF138}
+.app .grid > div:nth-child(1) {border-color: #187E13}
+.app .grid > div:nth-child(2) {border-color: #FA8AC0}
+.app .grid > div:nth-child(3) {border-color: #649BFA}
+.app .grid > div:nth-child(4) {border-color: #EEF138}
+
+.app .grid > div > h1 {
+	margin-top: 0em;
+}
 
 /* Double clicking labels should not select the text */
 .app label {
@@ -47,27 +67,31 @@ $meeple-yellow: #EEF138
 	text-align: center;
 }
 .areas input {
-	font-family: consolas, courier new, monospace;
+	font-family: consolas, "courier new", monospace;
 	font-size: 0.9em;
 	padding-top: 3px;
-	font-weight: regular;
+	font-weight: normal;
+	display: inline-block;
+	min-width: 1.5em;
+	width: 2.0em;
+	text-align: center;
+	padding: 2px 8px;
+	font-size: 0.9em;
 }
 .areas select {
 	padding: 4px 2px;
+	height: 100%;
 }
 .score {
-	font-family: consolas, courier new, monospace;
+	font-family: consolas, "courier new", monospace;
 	font-size: 0.9em;
 	padding-top: 2px;
 	font-weight: bold;
 }
-.areas input {
-	display: inline-block;
-	min-width: 1em;
-	width: 1.5em;
-	text-align: center;
-	padding: 2px 8px;
-	font-size: 0.9em;
+
+.final-score {
+	font-weight: bold;
+	transition: all 2s;
 }
 
 
@@ -84,14 +108,9 @@ $meeple-yellow: #EEF138
 	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-/* General app stuff */
-.app {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-}
 
 body {
 	background-color: #AFDEF3;
-	font-size: 1.0em;
+	font-size: 1.1em;
 }
 .hide { display: none; }
