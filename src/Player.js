@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Emoji from './Emoji.js'
 import Editable from './Editable.js'
 import Area from './Area.js'
+import getTabindex from './tabindex.js'
 
 class Player extends Component {
 	constructor(props) {
@@ -13,9 +14,7 @@ class Player extends Component {
 			finalScore: score
 		}
 	}
-	// componentDidUpdate(prevProps, prevState) {
-	// 	if( this.nameRef.current !== null ) this.nameRef.current.focus()
-	// }
+
 	updateScore = scoreDiff => this.setState({finalScore: this.state.finalScore + scoreDiff})
 
 	render() {
@@ -39,17 +38,20 @@ class Player extends Component {
 							key={area.terrain+area.crowns+area.tiles+i}
 						 	update={this.updateScore} />
 					))}
-					<button onClick={e => this.setState({areas: [...this.state.areas, {terrain: 'Field', crowns: 0, tiles: 0} ]})}>Add area</button>
+					<button type="submit"
+						onClick={e => this.setState({areas: [...this.state.areas, {terrain: 'Field', crowns: 0, tiles: 0} ]})}>Add area</button>
 				</div>
 
 				<div>
 					<label> <input type="checkbox"
+							tabIndex={getTabindex()}
 							onChange={e => this.updateCastleScore(e.target.checked)} />
 						Castle centered +{this.castleBonus}p </label>
 				</div>
 
 				<div>
 					<label> <input type="checkbox"
+						tabIndex={getTabindex()}
 						onChange={e => this.updateTilesScore(e.target.checked)} />
 					All tiles placed +{this.tilesBonus}p </label>
 				</div>

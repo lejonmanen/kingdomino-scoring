@@ -8,17 +8,13 @@ class App extends Component {
 		players: [
 			{
 				name: 'Player 1',
-				areas: ['Field', 'Forest', 'Sea', 'Meadow', 'Swamp', 'Mine'].map(t => ({
-					terrain: t, crowns: 0, tiles: 0
-				})) ,
+				areas: makeAreas(),
 				castleCentered: false,
 				allTilesPlaced: false
 			},
 			{
 				name: 'Player 2',
-				areas: ['Field', 'Forest', 'Sea', 'Meadow', 'Swamp', 'Mine'].map(t => ({
-					terrain: t, crowns: 0, tiles: 0
-				})) ,
+				areas: makeAreas(),
 				castleCentered: false,
 				allTilesPlaced: false
 			}
@@ -26,7 +22,7 @@ class App extends Component {
 	}
 	makeNewPlayer = () => ({
 		name: 'Player ' + (this.state.players.length + 1),
-		areas: [{ terrain: 'Field', crowns: 0, tiles: 0 }],
+		areas: makeAreas(),
 		castleCentered: false,
 		allTilesPlaced: false
 	})
@@ -47,5 +43,12 @@ class App extends Component {
 		);
 	}
 }
+
+function makeAreas() {
+	return ['Field', 'Forest', 'Sea', 'Meadow', 'Swamp', 'Mine'].map(t => ({
+		terrain: t, crowns: 0, tiles: 0
+	}))
+}
+
 
 export default App;
